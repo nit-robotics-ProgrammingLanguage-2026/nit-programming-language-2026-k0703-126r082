@@ -1,31 +1,42 @@
+
 #include <stdio.h>
 
 int fibo(int n);
 
 int main(void)
 {
-    int n;
-    int ans;
-    scanf("%d", &n);
-    if (n < 1 || n >= 30)
+    int number;
+
+    scanf("%d", &number);
+
+    if (number < 1 || number > 30)
     {
         printf("NG");
         return 0;
     }
-    ans = fibo(n);
-    printf("%d", ans);
+
+    printf("%d", fibo(number));
+
     return 0;
 }
 
 int fibo(int n)
 {
-    if (n == 1)
-    {
-        return 0;
-    }
-    if (n == 2)
+    int previous = 1;
+    int current = 1;
+    int next;
+
+    if (n <= 2)
     {
         return 1;
     }
-    return fibo(n - 1) + fibo(n - 2);
+
+    for (int i = 3; i <= n; i++)
+    {
+        next = previous + current;
+        previous = current;
+        current = next;
+    }
+
+    return current;
 }
